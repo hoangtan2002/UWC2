@@ -90,7 +90,8 @@ class homeFrame(tk.Frame):
         
         bottomFrame=tk.Frame(self)
         
-        HomeBtn=tk.Button(bottomFrame,width=12,text="Home")
+        HomeBtn=tk.Button(bottomFrame,width=12,text="Home",
+                          command=lambda:controller.show_frame("homeFrame"))
         HomeBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
         
         employeeBtn=tk.Button(bottomFrame,width=12,text="Employee",
@@ -162,7 +163,8 @@ class employeeFrame(tk.Frame):
         #bottom button frame  
         bottomFrame=tk.Frame(self)
         
-        HomeBtn=tk.Button(bottomFrame,width=12,text="Home")
+        HomeBtn=tk.Button(bottomFrame,width=12,text="Home",
+                          command=lambda:controller.show_frame("homeFrame"))
         HomeBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
         
         employeeBtn=tk.Button(bottomFrame,width=12,text="Employee",
@@ -393,7 +395,8 @@ class TaskFrame(tk.Frame):
         topUiFrame.pack(side=tk.TOP)
         #bottom button frame  
         bottomFrame=tk.Frame(self)
-        HomeBtn=tk.Button(bottomFrame,width=12,text="Home")
+        HomeBtn=tk.Button(bottomFrame,width=12,text="Home",
+                          command=lambda:controller.show_frame("homeFrame"))
         HomeBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
         
         employeeBtn=tk.Button(bottomFrame,width=12,text="Employee",
