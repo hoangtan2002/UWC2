@@ -1,4 +1,5 @@
-import tkinter as tk                
+import tkinter as tk    
+import sys            
 from tkinter import font as tkfont  
 from employeeController import *
 from taskController import *
@@ -22,7 +23,7 @@ class App(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (LoginPage, employeeFrame, TaskFrame, mapFrame, chatFrame):
+        for F in (LoginPage, homeFrame, employeeFrame, TaskFrame, mapFrame, chatFrame):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -70,12 +71,45 @@ class LoginPage(tk.Frame):
         #Buttons
         loginBtnFrame = tk.Frame(self)
         button1 = tk.Button(loginBtnFrame, text="Login",width=10,
-                            command=lambda: controller.show_frame("employeeFrame"))
+                            command=lambda: controller.show_frame("homeFrame"))
         button1.pack(side=tk.LEFT)
         button2 = tk.Button(loginBtnFrame, text="Exit",width=10,
-                            command=lambda: controller.show_frame("TaskFrame"))
+                            command=lambda: sys.exit(0))
         button2.pack(side=tk.RIGHT)
         loginBtnFrame.pack(side=tk.BOTTOM)
+
+class homeFrame(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="Home Page", font=controller.title_font)
+        label.pack(side=tk.TOP, anchor=tk.CENTER, expand=tk.YES)
+        
+        label2 = tk.Label(self, text="Welcome to the UWC 2.0 system", font=controller.title_font)
+        label2.pack(side=tk.TOP, anchor=tk.CENTER, expand=tk.YES)
+        
+        bottomFrame=tk.Frame(self)
+        
+        HomeBtn=tk.Button(bottomFrame,width=12,text="Home")
+        HomeBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
+        
+        employeeBtn=tk.Button(bottomFrame,width=12,text="Employee",
+                              command=lambda:controller.show_frame("employeeFrame"))
+        employeeBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
+        
+        TaskBtn=tk.Button(bottomFrame,width=12,text="Task",
+                          command=lambda:controller.show_frame("TaskFrame"))
+        TaskBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
+        
+        mapBtn=tk.Button(bottomFrame,width=12,text="Map",
+                         command=lambda:controller.show_frame("mapFrame"))
+        mapBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
+        
+        ChatBtn=tk.Button(bottomFrame,width=12,text="Chat",
+                          command=lambda: controller.show_frame("chatFrame"))
+        ChatBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
+        
+        bottomFrame.pack(side=tk.BOTTOM,anchor=tk.CENTER, expand=tk.YES)
 
 
 class employeeFrame(tk.Frame):
@@ -127,6 +161,7 @@ class employeeFrame(tk.Frame):
         
         #bottom button frame  
         bottomFrame=tk.Frame(self)
+        
         HomeBtn=tk.Button(bottomFrame,width=12,text="Home")
         HomeBtn.pack(side=tk.LEFT, anchor=tk.CENTER)
         
